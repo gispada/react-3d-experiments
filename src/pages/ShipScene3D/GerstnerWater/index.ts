@@ -1,8 +1,8 @@
 import { Object3DNode } from '@react-three/fiber'
 import { TextureLoader, Vector2, Vector3, RepeatWrapping, PlaneGeometry } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water'
-import { fragmentShader } from './fragmentShader'
-import { vertexShader } from './vertexShader'
+import fragmentShader from './fragment.glsl'
+import vertexShader from './vertex.glsl'
 
 declare global {
   namespace JSX {
@@ -21,9 +21,9 @@ const SUBDIVISIONS = 256
  */
 export class GerstnerWater extends Water {
   waves = [
-    { direction: 0, steepness: 0.06, wavelength: 160 },
-    { direction: 30, steepness: 0.06, wavelength: 150 },
-    { direction: 60, steepness: 0.06, wavelength: 140 }
+    { direction: 0, steepness: 0.03, wavelength: 160 },
+    { direction: 30, steepness: 0.03, wavelength: 150 },
+    { direction: 60, steepness: 0.02, wavelength: 140 }
   ]
 
   constructor(sunDirection?: Vector3) {
@@ -39,8 +39,8 @@ export class GerstnerWater extends Water {
       textureHeight: 512,
       waterNormals: texture,
       sunDirection: sunDirection || new Vector3(),
-      sunColor: 0xf1a63b,
-      waterColor: 0x001e0f,
+      sunColor: 0xfaf0c8,
+      waterColor: 0x011b38,
       distortionScale: 8,
       fog: false
     })
@@ -114,6 +114,6 @@ export class GerstnerWater extends Water {
   }
 
   update(delta: number) {
-    this.material.uniforms['time'].value += delta * 0.5
+    this.material.uniforms['time'].value += delta
   }
 }

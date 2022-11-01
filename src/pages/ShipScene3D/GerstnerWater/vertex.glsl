@@ -1,4 +1,3 @@
-export const vertexShader = `
 uniform mat4 textureMatrix;
 uniform float time;
 
@@ -38,6 +37,7 @@ void main() {
   mirrorCoord = modelMatrix * vec4( position, 1.0 );
   worldPosition = mirrorCoord.xyzw;
   mirrorCoord = textureMatrix * mirrorCoord;
+  vec4 mvPosition =  modelViewMatrix * vec4( position, 1.0 );
 
   vec3 gridPoint = position.xyz;
   vec3 tangent = vec3(1, 0, 0);
@@ -48,7 +48,7 @@ void main() {
   p += GerstnerWave(waveA, gridPoint);
   p += GerstnerWave(waveB, gridPoint);
   p += GerstnerWave(waveC, gridPoint);
-  gl_Position = projectionMatrix * modelViewMatrix * vec4( p.x, p.y, p.z, 1.0);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4( p.x, p.y, p.z, 1.0 );
 
   #include <beginnormal_vertex>
   #include <defaultnormal_vertex>
@@ -56,4 +56,3 @@ void main() {
   #include <fog_vertex>
   #include <shadowmap_vertex>
 }
-`
