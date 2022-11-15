@@ -12,7 +12,8 @@ export const Light = () => {
     'position-x': { value: 10, min: 0, max: 100 },
     'position-y': { value: 25, min: 0, max: 100 },
     'position-z': { value: 70, min: 0, max: 100 },
-    intensity: { value: 0.4, min: 0, max: 5 }
+    intensity: { value: 0.4, min: 0, max: 5 },
+    color: { value: '#e2debd' }
   })
 
   return <directionalLight ref={lightRef} {...props} rotation={[0, 0, 0]} />
