@@ -36,7 +36,6 @@ export const WaterScene = ({ sunDirection, onBoardCamera }: Props) => {
   const camera = useThree((state) => state.camera)
 
   const waterRef = useRef<GerstnerWater>(null)
-  const lastPositionRef = useRef<Vector3>()
 
   useLayoutEffect(() => {
     ship.position.set(2, 2, 2)
@@ -65,9 +64,6 @@ export const WaterScene = ({ sunDirection, onBoardCamera }: Props) => {
     ship.quaternion.rotateTowards(quat, delta)
 
     if (!onBoardCamera) return
-
-    // raycaster.set(camera.getWorldPosition(worldPosition), raycasterDirection)
-    // const [intersection] = raycaster.intersectObject(path)
 
     if (forward) {
       getCameraLocalDirection(camera, localDirection)
