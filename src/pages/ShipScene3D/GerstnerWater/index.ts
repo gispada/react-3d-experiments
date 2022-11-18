@@ -75,6 +75,8 @@ export class GerstnerWater extends Water {
           this.waves[2].wavelength
         ]
       }
+      shader.uniforms.reflectanceStrength = { value: 0.2 }
+      shader.uniforms.reflectionSampleStrength = { value: 0.35 }
       shader.uniforms.size.value = 10
       shader.vertexShader = vertexShader
       shader.fragmentShader = fragmentShader
