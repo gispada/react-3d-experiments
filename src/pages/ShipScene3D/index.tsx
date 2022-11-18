@@ -4,17 +4,22 @@ import {
   OrbitControls,
   Sky,
   PointerLockControls,
-  KeyboardControls
+  KeyboardControls,
+  QuadraticBezierLine,
+  Line,
+  CubicBezierLine
 } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { Vector3 } from 'three'
 import { useThreeJsSound } from '../../utils/useThreeJsSound'
 import { Light } from './Light'
+import { Tutorial } from './Tutorial'
 import { WaterScene } from './WaterScene'
 
 const sunPosition = new Vector3(0.5, 0.02, 1)
 
-const ON_BOARD_CAMERA = true
+const ON_BOARD_CAMERA = false
 
 export const ShipScene3D = () => {
   useThreeJsSound('sounds/ocean-ship.mp3', { loop: true })
@@ -26,6 +31,7 @@ export const ShipScene3D = () => {
         { name: 'backward', keys: ['s', 'S'] }
       ]}
     >
+      <Tutorial />
       <div id="ship3d-canvas-container" className="h-screen">
         <Canvas
           shadows
