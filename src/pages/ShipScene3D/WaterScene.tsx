@@ -29,8 +29,8 @@ const getCameraLocalDirection = (camera: Camera, target: Vector3) => {
 }
 
 export const WaterScene = ({ sunDirection, onBoardCamera }: Props) => {
-  const { scene: ship } = useGLTF('3d-models/Frigate3d.glb')
-  const { scene: path } = useGLTF('3d-models/Frigate3d_path.glb')
+  const { scene: ship } = useGLTF('3d-models/frigate/frigate.glb')
+  const { scene: path } = useGLTF('3d-models/frigate/frigate_path.glb')
 
   const [, get] = useKeyboardControls()
   const camera = useThree((state) => state.camera)
