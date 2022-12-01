@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { FrigateScene3D } from './pages/3dSceneFrigate'
+import { ShowroomScene3D } from './pages/3dSceneShowroom'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
-import { Scene3D } from './pages/Scene3D'
-import { ShipScene3D } from './pages/ShipScene3D'
 import './main.css'
 
 export function App() {
@@ -10,8 +10,8 @@ export function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/3d" element={<Scene3D />} />
-        <Route path="/ship-3d" element={<ShipScene3D />} />
+        <Route path="/showroom-3d" element={<ShowroomScene3D />} />
+        <Route path="/frigate-3d" element={<FrigateScene3D />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -7,7 +7,7 @@ const scenes = [
     title: '17th Century Frigate',
     description: 'Get on board and explore a 17th century frigate on the high seas.',
     imgUrl: frigateSceneImg,
-    url: 'ship-3d'
+    url: 'frigate-3d'
   }
 ]
 
