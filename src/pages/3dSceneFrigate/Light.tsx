@@ -1,9 +1,10 @@
 import { useHelper } from '@react-three/drei'
+import { DirectionalLightProps } from '@react-three/fiber'
 import { useControls } from 'leva'
-import { useRef } from 'react'
+import { forwardRef, useRef } from 'react'
 import { DirectionalLight, DirectionalLightHelper } from 'three'
 
-const props = {
+const config = {
   'position-x': 10,
   'position-y': 25,
   'position-z': 70,
@@ -11,18 +12,26 @@ const props = {
   color: '#e2debd'
 }
 
-export const Light = () => {
+const BaseLight = forwardRef<DirectionalLight, DirectionalLightProps>((props, ref) => {
+  return <directionalLight ref={ref} {...props} rotation={[0, 0, 0]} />
+})
+
+const DevLight = () => {
   const lightRef = useRef<DirectionalLight>(null)
 
-  // useHelper(lightRef, DirectionalLightHelper, 10, 'red')
+  useHelper(lightRef, DirectionalLightHelper, 10, 'red')
 
   const props = useControls('Light', {
-    'position-x': { value: 10, min: 0, max: 100 },
-    'position-y': { value: 25, min: 0, max: 100 },
-    'position-z': { value: 70, min: 0, max: 100 },
-    intensity: { value: 0.4, min: 0, max: 5 },
-    color: { value: '#e2debd' }
+    'position-x': { value: config['position-x'], min: 0, max: 100 },
+    'position-y': { value: config['position-y'], min: 0, max: 100 },
+    'position-z': { value: config['position-z'], min: 0, max: 100 },
+    intensity: { value: config.intensity, min: 0, max: 5 },
+    color: { value: config.color }
   })
 
-  return <directionalLight ref={lightRef} {...props} rotation={[0, 0, 0]} />
+  return <BaseLight ref={lightRef} {...props} />
 }
+
+const ProdLight = () => <BaseLight {...config} />
+
+export const Light = process.env.NODE_ENV === 'production' ? ProdLight : DevLight
