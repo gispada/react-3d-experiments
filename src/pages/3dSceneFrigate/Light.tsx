@@ -19,6 +19,7 @@ const BaseLight = forwardRef<DirectionalLight, DirectionalLightProps>((props, re
 const DevLight = () => {
   const lightRef = useRef<DirectionalLight>(null)
 
+  // @ts-ignore
   useHelper(lightRef, DirectionalLightHelper, 10, 'red')
 
   const props = useControls('Light', {

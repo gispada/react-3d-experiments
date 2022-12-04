@@ -6,6 +6,7 @@ import { SpotLight, SpotLightHelper } from 'three'
 export const Spotlight = () => {
   const lightRef = useRef<SpotLight>(null)
 
+  // @ts-ignore
   useHelper(lightRef, SpotLightHelper, 'yellow')
 
   const props = useControls({
@@ -16,12 +17,6 @@ export const Spotlight = () => {
   })
 
   return (
-    <spotLight
-      ref={lightRef}
-      // castShadow
-      position={[100, 260, -30]}
-      color="#fff9ef"
-      {...props}
-    />
+    <spotLight ref={lightRef} position={[100, 260, -30]} color="#fff9ef" {...props} />
   )
 }
