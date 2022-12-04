@@ -1,4 +1,4 @@
-import { useGLTF } from '@react-three/drei'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import { extend, useFrame, useThree } from '@react-three/fiber'
 import { useLayoutEffect, useRef } from 'react'
 import { Euler, Quaternion, Vector3 } from 'three'
@@ -13,7 +13,7 @@ type Props = {
 
 extend({ GerstnerWater })
 
-export const WaterScene = ({ sunDirection, onBoardCamera }: Props) => {
+export const MainScene = ({ sunDirection, onBoardCamera }: Props) => {
   const { scene: ship } = useGLTF('3d-models/frigate/frigate.glb')
 
   const camera = useThree((state) => state.camera)
@@ -40,7 +40,7 @@ export const WaterScene = ({ sunDirection, onBoardCamera }: Props) => {
 
   return (
     <>
-      {onBoardCamera && <Player parentMesh={ship} />}
+      {onBoardCamera ? <Player parentMesh={ship} /> : <OrbitControls />}
       <Sound />
       <gerstnerWater ref={waterRef} args={[sunDirection]} />
       <primitive object={ship} />

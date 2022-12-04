@@ -1,7 +1,8 @@
-import { useGLTF, useKeyboardControls } from '@react-three/drei'
+import { PointerLockControls, useGLTF, useKeyboardControls } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useLayoutEffect } from 'react'
 import { Camera, Mesh, Object3D, Raycaster, Vector3 } from 'three'
+import { TutorialStatus, useSceneStore } from './store'
 
 type Props = {
   parentMesh: Object3D
@@ -25,9 +26,12 @@ const getCameraLocalDirection = (camera: Camera, target: Vector3) => {
 }
 
 export const Player = ({ parentMesh }: Props) => {
+  const tutorialDismissed = useSceneStore(
+    ({ tutorialStatus }) => tutorialStatus === TutorialStatus.DISMISSED
+  )
+
   const [, get] = useKeyboardControls()
   const camera = useThree((state) => state.camera)
-
   const { scene: path } = useGLTF('3d-models/frigate/frigate_path.glb')
 
   useLayoutEffect(() => {
@@ -64,10 +68,10 @@ export const Player = ({ parentMesh }: Props) => {
       }
     } else if (backward) {
       // TODO: to finish
-      getCameraLocalDirection(camera, localDirection)
-      camera.position.sub(localDirection)
+      // getCameraLocalDirection(camera, localDirection)
+      // camera.position.sub(localDirection)
     }
   })
 
-  return null
+  return <PointerLockControls enabled={tutorialDismissed} />
 }

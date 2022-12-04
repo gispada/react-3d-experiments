@@ -1,17 +1,10 @@
-import {
-  Environment,
-  Stats,
-  OrbitControls,
-  PointerLockControls,
-  KeyboardControls,
-  Loader
-} from '@react-three/drei'
+import { Environment, Stats, KeyboardControls, Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { Vector3 } from 'three'
 import { Light } from './Light'
+import { MainScene } from './MainScene'
 import { Tutorial } from './Tutorial'
-import { WaterScene } from './WaterScene'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -28,7 +21,7 @@ export const FrigateScene3D = () => {
       ]}
     >
       <Loader />
-      <Tutorial />
+      {ON_BOARD_CAMERA && <Tutorial />}
       <div id="ship3d-canvas-container" className="h-screen">
         <Canvas
           camera={{
@@ -40,19 +33,9 @@ export const FrigateScene3D = () => {
           }}
         >
           {!isProd && <Stats />}
-          {/*  <Sky
-            distance={50000}
-            sunPosition={sunPosition}
-            inclination={0}
-            turbidity={0.8}
-            azimuth={0.4}
-            rayleigh={2}
-          /> */}
-
           <Light />
-          {ON_BOARD_CAMERA ? <PointerLockControls /> : <OrbitControls />}
           <Suspense fallback={null}>
-            <WaterScene sunDirection={sunPosition} onBoardCamera={ON_BOARD_CAMERA} />
+            <MainScene sunDirection={sunPosition} onBoardCamera={ON_BOARD_CAMERA} />
             <Environment
               background
               resolution={1024}
