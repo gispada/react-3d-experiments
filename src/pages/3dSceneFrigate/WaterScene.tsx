@@ -5,7 +5,6 @@ import { Euler, Quaternion, Vector3 } from 'three'
 import { GerstnerWater } from '../../components/GerstnerWater'
 import { Player } from './Player'
 import { Sound } from './Sound'
-import { Tutorial } from './Tutorial'
 
 type Props = {
   sunDirection: Vector3
