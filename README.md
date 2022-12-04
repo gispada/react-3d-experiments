@@ -1,6 +1,6 @@
 # React 3D Experiments
 
-A project to experiment with 3D in a React application, using **three.js** and **React Three Fiber**.
+A project to experiment with 3D in a React application, using **three.js** and **React Three Fiber**. The final result can be seen [here](https://react-3d-xi.vercel.app/).
 
 ## Available Scenes
 
