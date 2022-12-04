@@ -40,14 +40,8 @@ export const ShowroomScene3D = () => {
           <Camera />
           <Environment
             background
-            files={[
-              '/skybox/posx.jpg',
-              '/skybox/negx.jpg',
-              '/skybox/posy.jpg',
-              '/skybox/negy.jpg',
-              '/skybox/posz.jpg',
-              '/skybox/negz.jpg'
-            ]}
+            path="env-maps/0/"
+            files={['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']}
           />
         </Suspense>
       </Canvas>
